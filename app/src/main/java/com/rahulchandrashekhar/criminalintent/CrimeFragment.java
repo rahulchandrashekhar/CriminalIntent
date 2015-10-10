@@ -4,6 +4,9 @@ import android.app.Fragment;
 import android.os.Bundle;
 import android.view.*;
 import android.text.*;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 
 /**
@@ -12,6 +15,8 @@ import android.widget.EditText;
 public class CrimeFragment extends android.support.v4.app.Fragment {
     private Crime mCrime;
     private EditText mTitleField;
+    private Button mDateButton;
+    private CheckBox mSolvedCheckBox;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -38,6 +43,19 @@ public class CrimeFragment extends android.support.v4.app.Fragment {
             public void afterTextChanged(Editable editable) {  // Intentionally blank
             }
         });
+
+        mDateButton = (Button)v.findViewById(R.id.crime_date);
+        mDateButton.setText(mCrime.getDate().toString());
+        mDateButton.setEnabled(false);
+
+        mSolvedCheckBox = (CheckBox)v.findViewById(R.id.crime_solved);
+        mSolvedCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                mCrime.setSolved(isChecked);
+            }
+        });
+
         return v;
     }
 

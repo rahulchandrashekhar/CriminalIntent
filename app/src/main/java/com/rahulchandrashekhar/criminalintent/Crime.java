@@ -12,7 +12,10 @@ public class Crime {
     private Date mDate;
     private boolean mSolved;
 
-    public Crime() { mId = UUID.randomUUID();  }
+    public Crime() {
+        mId = UUID.randomUUID();
+        mDate = new Date();
+    }
     public UUID getId() { return mId;  }
     public String getTitle() { return mTitle;}
     public void setTitle(String title) { mTitle = title;}
