@@ -150,4 +150,11 @@ public class CrimeFragment extends android.support.v4.app.Fragment {
         mTimeButton.setText((String)android.text.format.DateFormat.format("HH:mm", mCrime.getDate()));
     }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+        CrimeLab.get(getActivity())
+                .updateCrime(mCrime);
+    }
+
 }
